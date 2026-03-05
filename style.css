@@ -145,3 +145,45 @@ body {
   60%       { transform: translateX(-4px); }
   80%       { transform: translateX(4px); }
 }
+
+/* Buttons */
+.btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.btn {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 13px 28px;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow 0.25s;
+}
+
+.btn-calculate {
+  background: linear-gradient(135deg, #ff6fa8, #ff9ec8);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(255, 111, 168, 0.38);
+  flex: 1;
+}
+
+.btn-calculate:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(255, 111, 168, 0.45);
+}
+
+.btn-reset {
+  background: rgba(255, 228, 240, 0.6);
+  color: var(--pink-deep);
+  border: 2px solid var(--pink-mid);
+}
+
+.btn-reset:hover {
+  background: var(--pink-light);
+  transform: translateY(-2px);
+}
