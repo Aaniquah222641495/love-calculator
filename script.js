@@ -72,3 +72,56 @@ const TIERS = [
     ],
   },
 ];
+
+
+ // Generates a  love score from two names.
+ //Same pair always gives the same score.
+
+function calculateScore(a, b) {
+  // Sort names alphabetically so order doesn't matter
+  const combined = [a, b].sort().join('');
+
+  // Hash: sum of charCode * position
+  let hash = 0;
+  for (let i = 0; i < combined.length; i++) {
+    hash += combined.charCodeAt(i) * (i + 1);
+  }
+
+  // Spread the distribution
+  hash = Math.abs((hash * 2654435761) >>> 0);
+
+  // Map to 1–100
+  const raw = (hash % 100) + 1;
+  return raw < 10 ? raw + 12 : raw;
+}
+
+//Validates a name input field.
+ //Shows an inline error if invalid.
+
+function validateInput(input, errorEl) {
+  const value = input.value.trim();
+  const wrapper = input.closest('.input-wrapper');
+
+  errorEl.textContent = '';
+  wrapper.classList.remove('error');
+
+  if (!value) {
+    errorEl.textContent = 'Please enter a name ';
+    wrapper.classList.add('error');
+    return false;
+  }
+
+  if (value.length < 2) {
+    errorEl.textContent = 'Name must be at least 2 characters~';
+    wrapper.classList.add('error');
+    return false;
+  }
+
+  if (!/^[a-zA-Z\s\-']+$/.test(value)) {
+    errorEl.textContent = 'Letters only please! ';
+    wrapper.classList.add('error');
+    return false;
+  }
+
+  return true;
+}
