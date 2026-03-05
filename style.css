@@ -34,3 +34,38 @@ body {
   padding: 20px;
   overflow-x: hidden;
 }
+
+/* Main card */
+.card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px);
+  border: 2px solid rgba(255, 179, 209, 0.45);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px 36px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 8px 32px var(--shadow);
+  animation: cardIn 0.7s var(--transition) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.title {
+  font-family: 'Pacifico', cursive;
+  color: var(--pink-deep);
+  font-size: 2.2rem;
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
