@@ -125,3 +125,30 @@ function validateInput(input, errorEl) {
 
   return true;
 }
+// Animates the percentage number from 0 to the target value.
+ 
+function animateCount(target, duration = 1200) {
+  const start = performance.now();
+
+  function step(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+
+// Slows down the count as it reaches the final number    const eased = 1 - Math.pow(1 - progress, 3);
+    percentageNum.textContent = Math.round(eased * target);
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      percentageNum.textContent = target;
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+// Returns the matching tier for a given score.
+
+function getTier(score) {
+  return TIERS.find(t => score >= t.min && score <= t.max) || TIERS[0];
+}
