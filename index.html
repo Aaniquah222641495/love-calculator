@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💖 Love Calculator 💖 </title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  
+
+  <!-- Main card -->
+  <main class="card" role="main">
+
+    <!-- App heading -->
+    <h1 class="title">💖 Love Calculator</h1>
+    <p class="subtitle">Find out how compatible you are</p>
+
+    <!-- Input section -->
+    <section class="inputs" aria-label="Name inputs">
+
+      <!-- Name 1 -->
+      <div class="input-group">
+        <label for="name1">Your Name</label>
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="name1"
+            placeholder="Enter your name..."
+            maxlength="50"
+            autocomplete="off"
+          />
+        </div>
+        <!-- Inline validation message -->
+        <span class="error-msg" id="error1" role="alert"></span>
+      </div>
+
+     
+
+      <!-- Name 2 -->
+      <div class="input-group">
+        <label for="name2">Their Name</label>
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="name2"
+            placeholder="Enter their name..."
+            maxlength="50"
+            autocomplete="off"
+          />
+        </div>
+        <span class="error-msg" id="error2" role="alert"></span>
+      </div>
+
+    </section>
+
+    <!-- Action buttons -->
+    <div class="btn-row">
+      <button class="btn btn-calculate" id="calculateBtn" aria-label="Calculate love score">
+        Calculate 💘
+      </button>
+      <button class="btn btn-reset" id="resetBtn" aria-label="Reset calculator">
+        Reset 🔄
+      </button>
+    </div>
+
+    <!-- Result section (hidden until calculated) -->
+    <section class="result hidden" id="resultSection" aria-live="polite" aria-label="Love result">
+
+      <!-- Animated heart -->
+
+      <!-- Percentage display -->
+      <div class="percentage-display">
+        <span class="percentage-number" id="percentageNum">0</span>
+        <span class="percentage-symbol">%</span>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="progress-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+
+      <!-- Result label (e.g. "Perfect Match!") -->
+      <div class="result-label" id="resultLabel"></div>
+
+      <!-- Cute message -->
+      <p class="result-message" id="resultMessage"></p>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    Made with 💕 for fun &nbsp;|&nbsp; Just for entertainment~
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
