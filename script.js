@@ -95,6 +95,7 @@ function calculateScore(a, b) {
   return raw < 10 ? raw + 12 : raw;
 }
 
+
 //Validates a name input field.
  //Shows an inline error if invalid.
 
@@ -104,6 +105,8 @@ function validateInput(input, errorEl) {
 
   errorEl.textContent = '';
   wrapper.classList.remove('error');
+  
+console.warn('Validation failed:', value);
 
   if (!value) {
     errorEl.textContent = 'Please enter a name ';
@@ -124,6 +127,7 @@ function validateInput(input, errorEl) {
   }
 
   return true;
+
 }
 // Animates the percentage number from 0 to the target value.
  
@@ -176,6 +180,9 @@ function showResult(score) {
   setTimeout(() => {
     resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, 200);
+
+  // In showResult
+console.log(`Showing result: ${score}%`);
 }
 
 //validates inputs then shows result.
@@ -198,7 +205,12 @@ function handleCalculate() {
 
   const score = calculateScore(a, b);
   showResult(score);
+    console.log(`Calculating love score for: ${a} & ${b}`);
+    console.log(`Love score: ${score}%`);
+    console.log(`Tier: ${getTier(score).label}`);
 }
+
+
 
 // Resets the calculator back to its initial state.
 
@@ -220,6 +232,9 @@ function handleReset() {
   });
 
   name1Input.focus();
+
+  // In handleReset
+console.log('Calculator reset');
 }
 
 // Clears error styling as the user types
