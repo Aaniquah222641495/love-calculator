@@ -19,7 +19,7 @@ const resultMessage = document.getElementById('resultMessage');
 const TIERS = [
   {
     min: 0, max: 20,
-    label: '🌱 Just Friends',
+    label: ' Just Friends',
     messages: [
       'Eish, yah neh... gerasper 💀 This ain\'t it chief.',
       'Ag no man, the vibes are not vibing at all 😬 Stick to being homies.',
@@ -28,7 +28,7 @@ const TIERS = [
   },
   {
     min: 21, max: 40,
-    label: '🌷 Cute Connection',
+    label: ' Cute Connection',
     messages: [
       'Okay there\'s something here but it\'s giving very situationship energy ngl 👀',
       'Ag it\'s cute but don\'t get too excited just yet hey 😅',
@@ -151,4 +151,51 @@ function animateCount(target, duration = 1200) {
 
 function getTier(score) {
   return TIERS.find(t => score >= t.min && score <= t.max) || TIERS[0];
+}
+
+/**
+ * Shows the result section with animations.
+ */
+function showResult(score) {
+  const tier = getTier(score);
+  const randomMsg = tier.messages[Math.floor(Math.random() * tier.messages.length)];
+
+  resultLabel.textContent   = tier.label;
+  resultMessage.textContent = randomMsg;
+  percentageNum.textContent = '0';
+
+  progressBar.setAttribute('aria-valuenow', score);
+  resultSection.classList.remove('hidden');
+
+  animateCount(score);
+
+  setTimeout(() => {
+    progressFill.style.width = score + '%';
+  }, 150);
+
+  setTimeout(() => {
+    resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 200);
+}
+
+//validates inputs then shows result.
+ 
+function handleCalculate() {
+  const valid1 = validateInput(name1Input, error1);
+  const valid2 = validateInput(name2Input, error2);
+
+  if (!valid1 || !valid2) return;
+
+  const a = name1Input.value.trim().toLowerCase();
+  const b = name2Input.value.trim().toLowerCase();
+
+  if (a === b) {
+    error2.textContent = 'That\'s the same person!';
+    name2Input.closest('.input-wrapper').classList.add('error');
+    showResult(100);
+    return;
+  }
+
+  const score = calculateScore(a, b);
+  showResult(score);
 }
