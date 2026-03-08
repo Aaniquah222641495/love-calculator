@@ -199,3 +199,41 @@ function handleCalculate() {
   const score = calculateScore(a, b);
   showResult(score);
 }
+
+// Resets the calculator back to its initial state.
+
+function handleReset() {
+  name1Input.value = '';
+  name2Input.value = '';
+  error1.textContent = '';
+  error2.textContent = '';
+
+  document.querySelectorAll('.input-wrapper').forEach(w => w.classList.remove('error'));
+
+  resultSection.classList.add('hidden');
+
+  progressFill.style.transition = 'none';
+  progressFill.style.width = '0%';
+
+  requestAnimationFrame(() => {
+    progressFill.style.transition = '';
+  });
+
+  name1Input.focus();
+}
+
+// Clears error styling as the user types
+function clearError(input, errorEl) {
+  errorEl.textContent = '';
+  input.closest('.input-wrapper').classList.remove('error');
+}
+
+// Event listeners
+calculateBtn.addEventListener('click', handleCalculate);
+resetBtn.addEventListener('click', handleReset);
+
+name1Input.addEventListener('keydown', e => { if (e.key === 'Enter') handleCalculate(); });
+name2Input.addEventListener('keydown', e => { if (e.key === 'Enter') handleCalculate(); });
+
+name1Input.addEventListener('input', () => clearError(name1Input, error1));
+name2Input.addEventListener('input', () => clearError(name2Input, error2));
