@@ -133,9 +133,8 @@ function animateCount(target, duration = 1200) {
   function step(now) {
     const elapsed = now - start;
     const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
 
-// Slows down the count as it reaches the final number 
-   const eased = 1 - Math.pow(1 - progress, 3);
     percentageNum.textContent = Math.round(eased * target);
 
     if (progress < 1) {
